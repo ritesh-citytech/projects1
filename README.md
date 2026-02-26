@@ -1,4 +1,4 @@
-# Laravel 12 + PHP 8.4 + Nginx Starter (Frontend + Admin + GraphQL CRUD)
+# Laravel 12 + PHP 8.2 + Nginx Starter (Frontend + Admin + GraphQL CRUD)
 
 This repository contains a Laravel 12 project structure prepared for:
 
@@ -7,7 +7,7 @@ This repository contains a Laravel 12 project structure prepared for:
 - Admin login and protected admin dashboard.
 - Full CRUD for **Categories** and **Products** in admin panel.
 - GraphQL CRUD for categories/products plus user queries.
-- Nginx + PHP 8.4 + MySQL container setup.
+- Nginx + PHP 8.2 + MySQL container setup.
 
 ## Entities covered
 
@@ -20,7 +20,7 @@ This repository contains a Laravel 12 project structure prepared for:
 - Route: `/graphql`
 - Schema file: `graphql/schema.graphql`
 
-## Run with Docker (Nginx + PHP 8.4)
+## Run with Docker (Nginx + PHP 8.2)
 
 ```bash
 docker compose up -d
