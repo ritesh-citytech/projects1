@@ -1,0 +1,68 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  role: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Category {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  products: [Product!]! @hasMany
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Product {
+  id: ID!
+  category: Category! @belongsTo
+  name: String!
+  slug: String!
+  description: String
+  price: Float!
+  stock: Int!
+  is_active: Boolean!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Query {
+  users: [User!]! @guard @paginate(model: "App\\Models\\User")
+  user(id: ID! @eq): User @guard @find(model: "App\\Models\\User")
+
+  categories: [Category!]! @paginate(model: "App\\Models\\Category")
+  category(id: ID! @eq): Category @find(model: "App\\Models\\Category")
+
+  products: [Product!]! @paginate(model: "App\\Models\\Product")
+  product(id: ID! @eq): Product @find(model: "App\\Models\\Product")
+}
+
+input CategoryInput {
+  name: String!
+  slug: String
+  description: String
+}
+
+input ProductInput {
+  category_id: ID!
+  name: String!
+  slug: String
+  description: String
+  price: Float!
+  stock: Int!
+  is_active: Boolean!
+}
+
+type Mutation {
+  createCategory(input: CategoryInput! @spread): Category @guard @create(model: "App\\Models\\Category")
+  updateCategory(id: ID!, input: CategoryInput! @spread): Category @guard @update(model: "App\\Models\\Category")
+  deleteCategory(id: ID!): Category @guard @delete(model: "App\\Models\\Category")
+
+  createProduct(input: ProductInput! @spread): Product @guard @create(model: "App\\Models\\Product")
+  updateProduct(id: ID!, input: ProductInput! @spread): Product @guard @update(model: "App\\Models\\Product")
+  deleteProduct(id: ID!): Product @guard @delete(model: "App\\Models\\Product")
+}
